@@ -1,3 +1,4 @@
+/** Most used commands */
 // npm run firebase:start:import -> Start Emulator with test-data
 // npm run build:watch -> Build TypeScript files
 // npm run deploy -> Deploy to Firebase
@@ -5,6 +6,7 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 
+// Import required event handlers, types, and type for Firestore triggers
 import { 
     onDocumentCreated, 
     onDocumentUpdated, 
@@ -12,19 +14,22 @@ import {
     QueryDocumentSnapshot 
 } from "firebase-functions/v2/firestore";
 
+// Import the required event handlers for Storage triggers
 import { 
      onObjectFinalized, onObjectDeleted
 } from "firebase-functions/v2/storage";
 
+// Import the required functions for Storage triggers
 import { getStorage, getDownloadURL } from "firebase-admin/storage"
 
 // Path to Firebase service account key file
 let serviceAccountPath = '../secure/serviceAccountKey.json';
 
+// Initialize Firebase Admin SDK
 if (admin.apps.length === 0) {
     admin.initializeApp({
         credential: admin.credential.cert(require(serviceAccountPath)),
-        storageBucket: 'gs://my-awesome-project-2023.appspot.com'
+        storageBucket: 'your-storage-bucket-url'
     });
 }
 
